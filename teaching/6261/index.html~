@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMS E6261: Advanced Cryptography</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 1.2em;
+            margin-top: 1.2em;
+            margin-bottom: 0.5em;
+            font-weight: 600;
+        }
+        
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .nav-links {
+            margin: 20px 0 30px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 1.05em;
+        }
+        
+        .nav-links a {
+            margin-right: 25px;
+            color: #0066cc;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        
+        hr {
+            display: none;
+        }
+        
+        ul {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .lecture-entry {
+            margin: 20px 0;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .lecture-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .lecture-content {
+            margin-left: 20px;
+        }
+        
+        .reading-list {
+            margin-left: 20px;
+            font-size: 0.95em;
+        }
+        
+        strong {
+            font-weight: 600;
+        }
+        
+        em {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>COMS E6261: Advanced Cryptography</h1>
+    <h1>Spring 2026: Cryptography + AI</h1>
+
+    <div class="nav-links">
+        <a href="#information">General Information</a>
+        <a href="#readings">Lectures and Reading</a>
+	<a href="#resources">Additional Resources</a>
+        <a href="#requirements">Class Requirements</a>
+	<a href="#presentations">Presentation Details</a>
+	<a href="#projects">Project Details</a>
+    </div>
+
+    <h2 id="information">General Information</h2>
+
+    <h3>Instructors:</h3>
+    <ul>
+        <li><a href="https://www.cs.columbia.edu/~mchrist/">Miranda Christ</a> (516 CSB, office hours by appointment), Email: mchrist at cs</li>
+	<li><a href="http://www.cs.columbia.edu/~tal">Tal Malkin</a> (514 CSB, office hours by appointment), Email: tal at cs</li>
+    </ul>
+
+   <h3>Teaching Assistant:</h3>
+    <ul>
+        <li><a href="https://yizhihuang.org/">Yizhi Huang</a> (523 CSB, office hours by appointment), Email: yizhi at cs</li>
+    </ul>
+
+    <p><strong>Time & Place:</strong> Thursdays 2:10pm-4:00pm, Mudd 524</p>
+
+    <p><strong>Administrative Notes:</strong><br>
+      This course can be used as an elective for the PhD program in computer science and for undergraduate CS majors, and as a secondary elective for MS students in the "Foundations of Computer Science" or the "Computer Security" pathways. </p> 
+
+
+    <h3>Prerequisites</h3>
+    <p>COMS-W4261 Introduction to Cryptography, or two 4000-level theory courses, or instructor approval. The most important prerequisite is mathematical maturity, and comfort with (preferably also strong affection for) rigorous definitions and proofs.</p>
+
+    <h3>Course Description</h3>
+    <p>
+      This class will explore the emerging interface between cryptography and AI. Our main focus will be on cryptographic approaches to AI, asking how we can build on the last four decades of development of modern cryptography towards understanding, formulating, and achieving privacy, trust, and safety goals for AI algorithms, as their interaction with everyday public discourse continues to grow. This includes exploring cryptographic techniques that can be used either to develop privacy-preserving and safe AI, or to demonstrate attacks against it. More importantly, it also includes applying a cryptographic mindset: explicitly thinking about adversarial models, rigorously formalizing definitions and assumptions, and provably showing when they can and cannot be achieved, all while using the complex, ambiguous, and messy real world to inform our choices and argue their meaningfulness. We will also consider the other direction: how recent AI developments can help towards achieving cryptographic goals.
+    </p>
+
+    <p>
+      We will explore these topics through critical reading of recent research papers, and discussion of open problems and directions. Specific papers will be selected by the instructors based on their interests and the interests of the students taking the class. Sample topics may include privacy-preserving learning, secure inference, watermarks for generative AI, backdoors in AI models, interactive proofs and verification of model properties, cryptographic hardness of learning tasks, weight extraction, steganography, AI-based cryptography and cryptanalysis, and AI safety.
+      </p> 
+
+    
+    <h2 id="readings">Lectures and Readings</h2>
+    <p>This course is an advanced graduate level seminar, where most lectures will be given by students taking the class (with prior feedback and support from the instructors and fellow students).
+    A typical lecture will center around a topic (e.g., watermarks for generative AI, backdoors in ML models) and involve presenting, critiquing, and discussing several papers within this topic. This plan may change as the course progresses, based on student and instructor interest.  
+</p> 
+
+<p>In each lecture, we have listed papers that will be <b>presented</b> (self explanatory), along with papers that are <b>optional</b> (not the focus but will be featured in lecture), and papers that are <b>relevant</b> (may not be discussed in lecture, but we recommend checking them out if you're interested).
+
+    <div class="lecture-entry">
+        <div class="lecture-title">Lecture 1 (1/22):</div>
+        <div class="lecture-content">
+            <p>Introduction and class overview (what is a cryptographic mindset?); Private Learning I</p>
+            <div class="reading-list">
+		    <p>First lecture given by Miranda and Tal, <a href="https://docs.google.com/presentation/d/1Bv5nkb1497iWN2tXtN7Ac5G4ZwXQf-dgDXSASPu76ME/edit?usp=sharing">slides available here</a> (to those with a Columbia account). The lecture covered the following works:</p>
+                <ul>
+			<li><a href="https://arxiv.org/pdf/2010.02772">InstaHide: Instance-hiding Schemes for Private Distributed Learning</a>. Yangsibo Huang, Zhao Song, Kai Li, Sanjeev Arora.</li>
+			<li><a href="https://arxiv.org/pdf/2011.05315">Is Private Learning Possible with Instance Encoding?</a>. Nicholas Carlini, Samuel Deng, Sanjam Garg, Somesh Jha, Saeed Mahloujifar, Mohammad Mahmoody, Shuang Song, Abhradeep Thakurta, Florian Tramer.</li>
+			<li><a href="https://nicholas.carlini.com/writing/2020/instahide_disappointingly_wins_bell_labs_prize.html">InstaHide Disappointingly Wins Bell Labs Prize, 2nd Place</a>. Nicholas Carlini.</li>
+			<li><a href="https://arxiv.org/pdf/1607.00133">Deep Learning with Differential Privacy</a>. Martín Abadi, Andy Chu, Ian Goodfellow, H. Brendan McMahan, Ilya Mironov, Kunal Talwar, Li Zhang.</li>
+			<li><a href="https://research.google/blog/vaultgemma-the-worlds-most-capable-differentially-private-llm/">VaultGemma: The world's most capable differentially private LLM</a>. Amer Sinha and Ryan McKenna.</li>
+		<!--
+                    <li><a href="#">Lecture notes from class</a></li>
+                    <li><a href="#">Additional reading materials</a></li>
+		-->    
+                </ul>
+            </div>
+
+	    <p><b>Question to think about:</b> What can we do when practical defenses have no provable guarantees (and are in fact easily broken), but provable defenses are impractical?</p> 
+
+	    <p><b>Assignment:</b> Make sure you have access to the
+	   <a href="https://www.gradescope.com/courses/1237585">gradescope
+	   page for our class</a>. You
+	   can reach it from courseworks (left side of menu), or by
+	   adding the course on gradescope with entry code  ZJP8J8.
+	   First quiz has been posted, and due date extended  -- please complete it by  end of Monday 2/2! </p>
+        </div>
+    </div>
+
+    <div class="lecture-entry">
+	 <div class="lecture-title">Lecture 2 (1/29):</div>
+	 <div class="lecture-content">
+	    <p>Adversarial examples and backdoors</p>
+	    <div class="reading-list">
+		<p>Crash course on gradient descent (Miranda): <a href="https://docs.google.com/presentation/d/1b2j7xIoufnXGYu8-OOfg__sldqhMYHwVcDOKC-BYxY0/edit?usp=sharing">slides here</a></p>
+
+		<p>Presentation 1 <a href="https://drive.google.com/file/d/1HYxU5a_lGfMxRxak5-VXPGJSfmi3aInV/view?usp=sharing">(slides)</a>:
+		 the exciting world of adversarial examples. Presenter: Hideaki, Supporter: Anurag.</p>
+		<ul>
+			<li><b>Present:</b> <a href="https://people.csail.mit.edu/madry/6.883-Spring18/files/lecture_11.pdf">Madry lecture notes: Adversarial Examples and Misclassification Attacks</a></li>
+			<li>Optional: <a href="https://arxiv.org/abs/1412.6572">Explaining and Harnessing Adversarial Examples</a>. Ian J. Goodfellow, Jonathon Shlens, Christian Szegedy.</li>
+			<li>Optional: <a href="https://arxiv.org/abs/1905.02175">Adversarial Examples Are Not Bugs, They Are Features</a>. Andrew Ilyas, Shibani Santurkar, Dimitris Tsipras, Logan Engstrom, Brandon Tran, Aleksander Madry. </li>
+			<li>Relevant: <a href="https://arxiv.org/abs/1905.11564">Adversarially Robust Learning Could Leverage Computational Hardness</a>. Sanjam Garg, Somesh Jha, Saeed Mahloujifar, Mohammad Mahmoody. </li>
+		</ul>
+		<p>Presentation 2 <a href="https://drive.google.com/file/d/1XtVhT3LDD6mMCgO2adb2sNh6AJ9h3j7V/view?usp=sharing">(slides)</a>: backdoors. Presenter: Tony, Supporter: Yoav.</p> 
+		<ul>
+			<li><b>Present:</b> <a href="https://arxiv.org/abs/2204.06974">Planting Undetectable Backdoors in Machine Learning Models</a>. Shafi Goldwasser, Michael P. Kim, Vinod Vaikuntanathan, Or Zamir. </li>
+			<li>Relevant: <a href="https://arxiv.org/abs/2406.05660v2">Injecting Undetectable Backdoors in Obfuscated Neural Networks and Language Models</a>. Alkis Kalavasis, Amin Karbasi, Argyris Oikonomou, Katerina Sotiraki, Grigoris Velegkas, Manolis Zampetakis. </li>
+			<li>Relevant: <a href="https://arxiv.org/abs/2409.03077">Backdoor defense, learnability and obfuscation</a>. Paul Christiano, Jacob Hilton, Victor Lecomte, Mark Xu. </li>
+			<li>Relevant: <a href="https://arxiv.org/abs/2411.03279">Oblivious Defense in ML Models: Backdoor Removal without Detection</a>. Shafi Goldwasser, Jonathan Shafer, Neekon Vafa, Vinod Vaikuntanathan. </li>
+			<li>Relevant: <a href="https://arxiv.org/abs/2210.00108">ImpNet: Imperceptible and blackbox-undetectable backdoors in compiled neural networks</a>. Eleanor Clifford, Ilia Shumailov, Yiren Zhao, Ross Anderson, Robert Mullins. </li>
+		</ul>
+	  </div>
+	    <p><b>Question to think about:</b> What are the differences between backdoors and adversarial examples? Consider the control required to exploit them, and the ability they give an attacker.</p>
+
+	    <p><b>Assignment:</b> Quiz 2 is posted, please complete it by end of Friday 2/6! 
+	    </p>
+	 </div>
+    </div>
+
+    <div class="lecture-entry">
+	 <div class="lecture-title">Lecture 3 (2/5):</div>
+	 <div class="lecture-content">
+            <p>Private learning II</p>
+	    <div class="reading-list">
+
+	      <p>Presentation 1 <a href="https://drive.google.com/file/d/1JqMo5bDVnDvdZ0iS-o6gHkqdMCLN_2-r/view?usp=sharing">(slides)</a>: 
+		federated learning + secure aggregation. Presenter: Alison, Supporter: Hideaki.</p>
+		 <ul>
+			 <li><b>Present:</b> <a href="https://dl.acm.org/doi/10.1145/3133956.3133982">Practical Secure Aggregation for
+					 Federated Learning on User-Held Data</a>. Keith Bonawitz, Vladimir Ivanov, Ben Kreuter, Antonio Marcedone, H. Brendan McMahan, Sarvar Patel, Daniel Ramage, Aaron Segal, Karn Seth. </li>
+			 <li>Relevant: <a href="https://eprint.iacr.org/2024/936">Willow: Secure Aggregation with One-Shot Clients</a>. James Bell-Clark, Adrià Gascón, Baiyu Li, Mariana Raykova, and Phillipp Schoppmann. </li>
+			 <li>Relevant: <a href="https://arxiv.org/abs/2410.22303">𝖮𝖯𝖠: One-shot Private Aggregation with Single Client Interaction and its Applications to Federated Learning</a>. Harish Karthikeyan, Antigoni Polychroniadou. </li>
+<li> Relevant: <a href="https://federated.withgoogle.com/">Google&#39;s Federated Learning page</a>, in particular the comic, and more seriously, the following paper from that page: <a href="https://arxiv.org/abs/1912.04977">Advances and Open Problems in Federated Learning</a> 
+  </li>
+
+		 </ul>
+		 <p>Crash course on MPC and FHE (Tal): <a href="https://docs.google.com/presentation/d/1lldDfGxCTLqnjgZpEqDJ8ha6MED1P7lLFT4YBJhkCGE/edit?usp=sharing">slides here</a>.</p>
+		 <ul>
+		   <li>Optional: <a href="https://eprint.iacr.org/2020/300">Secure Multiparty Computation (MPC)</a> survey by Yehuda Lindell.</li>
+		   <li> Optional: <a href="https://advancedcrypto.github.io/Lecture4a.pdf">Vaikuntanathan  lecture notes: Fully Homomorphic Encryption</a>  </li>
+		 </ul>
+
+		 
+		 <p>Presentation 2 <a href="https://docs.google.com/presentation/d/1kZRFWx16kuaMp3zQjXfJIXfO-nwHUGgR/edit?usp=sharing&ouid=100974279555318634279&rtpof=true&sd=true">(slides)</a>: using MPC and FHE for secure inference. Presenter: Ye, Supporter: Asher. </p> 
+		 <ul>
+		   <li> <b>Present:</b> An overview of common challenges, approaches, tools, and tradeoffs, across many papers.
+		     Below we provide two sample papers using different techniques, and one survey, but there are many more papers. The slides will have some more representative biblliography (also far from exhaustive). 
+		   </li>
+		   <li> Optional:  <a href="https://eprint.iacr.org/2020/1002">CrypTFlow2: Practical 2-Party Secure Inference</a>. Deevashwer Rathee, Mayank Rathee, Nishant Kumar, Nishanth Chandran, Divya Gupta, Aseem Rastogi, and Rahul Sharma. </li>
+		   <li> Optional: <a href="https://arxiv.org/abs/2311.03470">Orion: A Fully Homomorphic Encryption Framework for Deep Learning</a>. Austin Ebel, Karthik Garimella, Brandon Reagen. 
+		     </li> 
+		   <li> Optional: <a href="https://arxiv.org/abs/2507.14519">Towards Efficient Privacy-Preserving Machine Learning: A Systematic Review from Protocol, Model, and System Perspectives</a>. Wenxuan Zeng, Tianshi Xu, Yi Chen, Yifan Zhou, Mingzhe Zhang, Jin Tan, Cheng Hong, Meng Li. 
+		   </li>
+		 </ul>
+	    </div>
+	 <p><b>Question to think about:</b> What are the goals of secure inference? (How) can cryptography be used to achieve them?</p>
+	 </div>
+   </div>
+
+   <div class="lecture-entry">
+         <div class="lecture-title">Lecture 4 (2/12):</div>
+         <div class="lecture-content">
+            <p>Watermarks</p>
+            <div class="reading-list">
+              <p>Presentation 1 <a href="https://drive.google.com/file/d/1YSWfhF0h0oRA9s7yh0uBZpWtpCaYU1IY/view?usp=sharing">(slides)</a> : hash-based LLM watermarks. Presenter: Yoav, Supporter: Alison. 
+	      </p>
+		 <ul>
+
+			 <li><b>Present:</b> <a href="https://arxiv.org/abs/2306.09194">Undetectable Watermarks for Language Models</a>. Miranda Christ, Sam Gunn, Or Zamir. <b>Focus on sections 1-4.</b></li>
+		    <li>Optional: <a href="https://arxiv.org/abs/2301.10226">A Watermark for Large Language Models</a>. John Kirchenbauer, Jonas Geiping, Yuxin Wen, Jonathan Katz, Ian Miers, Tom Goldstein.</li>
+		    <li>Optional: <a href="https://scottaaronson.blog/?p=6823">Scott Aaronson's watermark, as described on his blog</a>. Scott Aaronson.</li>
+		 </ul>
+		 <p>Presentation 2 <a href="https://drive.google.com/file/d/10Rj9MQDR-QPRBlrD8IfvA202EOBDRidv/view?usp=sharing">(slides)</a>: pseudorandom-code-based watermarks. Presenter: Christine, Supporter: Anurag.</p>
+		 <ul>
+			 <li><b>Present:</b> <a href="https://eprint.iacr.org/2024/235">Pseudorandom Error-Correcting Codes</a>. Miranda Christ and Sam Gunn. <b>Focus on sections 1 and 2.</b></li>
+		    <li>Optional: <a href="https://arxiv.org/abs/2410.07369">An Undetectable Watermark for Generative Image Models</a>. Sam Gunn, Xuandong Zhao, Dawn Song.</li>
+		    <li>Relevant: <a href="https://arxiv.org/abs/2307.15593">Robust Distortion-free Watermarks for Language Models</a>. Rohith Kuditipudi, John Thickstun, Tatsunori Hashimoto, Percy Liang.</li>
+		    <li>Relevant: <a href="https://arxiv.org/abs/2406.02633">Edit Distance Robust Watermarks via Indexing Pseudorandom Codes</a>. Noah Golowich, Ankur Moitra. </li>
+		    <li>Relevant: <a href="https://eprint.iacr.org/2024/1840">Ideal Pseudorandom Codes</a>. Omar Alrabiah, Prabhanjan Ananth, Miranda Christ, Yevgeniy Dodis, Sam Gunn. </li>
+		    <li>Relevant: <a href="https://arxiv.org/abs/2512.08918v1">Improved Pseudorandom Codes from Permuted Puzzles</a>. Miranda Christ, Noah Golowich, Sam Gunn, Ankur Moitra, Daniel Wichs. </li>
+		    <li>Relevant: <a href="https://eprint.iacr.org/2025/1020">Separating Pseudorandom Codes from Local Oracles</a>. Nico Döttling, Anne Müller, Mahesh Sreekumar Rajasree. </li>
+		    <li>Relevant: <a href="https://eprint.iacr.org/2025/1021">Black-Box Crypto is Useless for Pseudorandom Codes</a>. Sanjam Garg, Sam Gunn, Mingyuan Wang. </li>
+		    <li>Relevant: <a href="https://arxiv.org/abs/2311.04378">Watermarks in the Sand: Impossibility of Strong Watermarking for Generative Models</a>. Hanlin Zhang, Benjamin L. Edelman, Danilo Francati, Daniele Venturi, Giuseppe Ateniese, Boaz Barak. </li>
+		 </ul>
+		 <p>Mini presentation 3: Miranda discusses more watermarks (<a href="https://www.cs.columbia.edu/~mchrist/watermark-tutorial-turin.pptx">slides</a> from Miranda's talk at the <a href="https://ai4i.it/ias-winter-school-2026/">AI4I Winter School</a>).
+            </div>
+         </div>
+   </div>
+
+   <div class="lecture-entry">
+	   <div class="lecture-title">Lecture 5 (2/19):</div>
+	   <div class="lecture-content">
+		   <p>Filtering</p>
+		   <div class="reading-list">
+			   <p>Presentation 1 <a href="https://drive.google.com/file/d/1DiF4CmGHF8wG0mNKKPpRXt5EQZREf3Gl/view?usp=sharing">(slides)</a>: impossibility of filtering in theory. Presenter: Leo, Supporter: Sebastian.</p>
+			   <ul>
+				   <li><b>Present:</b> <a href="https://arxiv.org/abs/2507.07341">On the Impossibility of Separating Intelligence from Judgment: The Computational Intractability of Filtering for AI Alignment</a>. Sarah Ball, Greg Gluch, Shafi Goldwasser, Frauke Kreuter, Omer Reingold, Guy N. Rothblum. <b>Focus on sections 1-4.</b></li>
+			   </ul>
+			   <p>Presentation 2 <a href="https://docs.google.com/presentation/d/12Fhg9Uh2hxrrTx8qdjuXoXZR0JYqdFlH/edit?usp=sharing&ouid=100974279555318634279&rtpof=true&sd=true">(slides)</a>: filtering in practice, causes for pessimism and optimism. Presenter: Ryan, Supporter: Tony.</p>
+			   <ul>
+				   <li><b>Present:</b> <a href="https://arxiv.org/abs/2510.01529">Bypassing Prompt Guards in Production with Controlled-Release Prompting</a>. Jaiden Fairoze, Sanjam Garg, Keewoo Lee, Mingyuan Wang. <b>Focus on sections 1-6.</b></li>
+				   <li>Relevant: <a href="https://arxiv.org/abs/2507.11473">Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety</a>. Korbak et al.
+			   </ul>
+		   </div>
+	   <p><b>Question to think about:</b> How should theoretical impossibilities influence what we do in practice?</p>
+	   </div>
+    </div>
+
+    <div class="lecture-entry">
+	    <div class="lecture-title">Lecture 6 (2/26):</div>
+	    <div class="lecture-content">
+		    <p>Verifiable Learning I</p>
+		    <div class="reading-list">
+		      <p> Crash course on proofs (Tal): <a href="https://docs.google.com/presentation/d/1lrcfP3e1zW7NLfiSTNXvZ4WA4brwQXrXm_UPVnsu790/edit?usp=sharing">slides here</a>.
+		      </p>
+		      <p>Presentation 1 <a href="https://drive.google.com/file/d/174nnT16rOrkqvP8LfMQyrTa9Xeped369/view?usp=sharing">(slides)</a>: a theory take on verification. Presenter: Sebastian, Supporter: Yoav.</p>
+		      <ul>
+			<li> <b> Present:</b> <a href="https://d-nb.info/136662615X/34">Interactive Proofs for Verifying Machine Learning</a> (with <a href="https://eccc.weizmann.ac.il/report/2020/058/">full version here</a>). Shafi Goldwasser, Guy Rothblum, Jonathan Shafer, Amir Yehudayoff. </li>
+			<li>Relevant: <a href="https://arxiv.org/abs/2211.17096">PAC Verification of Statistical Algorithms</a>. Saachi Mutreja and Jonathan Shafer. 
+			</li>
+		      </ul>
+		      <p> Presentation 2 <a href="https://drive.google.com/file/d/1X7IO1TURs3i2sFQtQ6G2rhHMykP24KgY/view?usp=sharing">(slides)</a>: a practical take on verification. Presenter: Hideaki, Supporter: Ye.</p>
+		      <ul>
+			<li><b> Present: </b> <a href="https://eprint.iacr.org/2024/162">Zero-Knowledge Proofs of Training for Deep Neural Networks</a>. Kasra Abbaszadeh, Christodoulos Pappas, Jonathan Katz, Dimitros Papadopoulos. 
+			</li>
+			<li>Optional:  <a href="https://eprint.iacr.org/2023/1345">Experimenting with Zero-Knowledge Proofs of Training</a>. Sanjam Garg, Aarushi Goel, Somesh Jha, Saeed Mahloujifar, Mohammad Mahmoody, Guru-Vamsi Policharla, Mingyuan Wang. 
+			</li>
+			
+		      </ul>
+	            </div>
+            </div>
+    </div>
+    <div class="lecture-entry">
+        <div class="lecture-title">Lecture 7 (3/5):</div>
+        <div class="lecture-content">
+		<p>Guest lecture by <a href="https://talherman.github.io/">Tal Herman</a> (<a href="https://drive.google.com/file/d/1mJxq4P_zIlIPmDKJJ818YK5dU7c33F1q/view?usp=drive_link">Slides</a>): Verifiable Data Science: Interactive Proofs for Distribution Properties 
+</p>
+          <div class="reading-list">
+	    <p> <b>Abstract:</b> Statistical analyses on valuable datasets routinely guide high-stake decisions in various domains. As the stakes for data science computations grow, and as more computations are based on large samples, it is increasingly important to obtain assurances that the results of these analyses and algorithms are correct. Approximate correctness can be verified by replicating the entire analysis, but can we verify without replication? In this talk we review a line of work aimed at constructing efficient proof-systems that allow a probabilistic verifier to ascertain that the results of an analysis are approximately correct, while drawing fewer samples and using less computational resources than would be needed to replicate the analysis. We focus on distribution testing problems: verifying that an unknown distribution is close to having a claimed property. 
+	      </p> 
+                <p>Please read introductions of the following papers:</p>
+                <ul>
+                  <li><a href="https://eccc.weizmann.ac.il/report/2017/155/">Proofs of Proximity for Distribution Testing</a>. Alessandro Chiesa, Tom Gur.</li>
+		    <li><a href="https://eccc.weizmann.ac.il/report/2023/161/">Doubly-Efficient Interactive Proofs for Distribution Properties</a>. Tal Herman and Guy Rothblum. </li>
+		    <li><a href="https://eccc.weizmann.ac.il/report/2024/094/">Interactive Proofs for General Distribution Properties</a>. Tal Herman and Guy Rothblum.</li> 
+		    <li><a href="https://arxiv.org/abs/2409.06594">How to Verify Any (Reasonable) Distribution Property: Computationally Sound Argument System for Distributions</a>. Tal Herman and Guy Rothblum.</li> 
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="lecture-entry">
+	<div class="lecture-title">Lecture 8 (3/12):</div>
+	<div class="lecture-content">
+	   <p>Hardness of learning</p>
+	   <div class="reading-list">
+	     <p>Presentation 1 (<a href="https://drive.google.com/file/d/1ipV6iW4PvIXEJeVlmtMZbKVW1AAEmY-L/view?usp=sharing">slides</a>, <a href="https://drive.google.com/file/d/1tt2p-_vsXMGUVvnotQ8fKp2LMg4nHrPC/view?usp=sharing">notes</a>): continuous learning with errors. Presenter: Asher, Supporter: Tony. </p>
+	      <ul>
+		   <li><b>Present:</b> <a href="https://arxiv.org/abs/2005.09595">Continuous LWE</a>. Joan Bruna, Oded Regev, Min Jae Song, Yi Tang. </li>
+	           <li>Relevant: <a href="https://eprint.iacr.org/2022/437">Continuous LWE is as Hard as LWE & Applications to Learning Gaussian Mixtures</a>. Aparna Gupte,
+Neekon Vafa,
+Vinod Vaikuntanathan. </li>
+		   <li>Relevant: <a href="https://arxiv.org/abs/2207.14266">Cryptographic Hardness of Learning Halfspaces with Massart Noise</a>. Ilias Diakonikolas, Daniel M. Kane, Pasin Manurangsi, Lisheng Ren. </li>
+              </ul>
+	   <p>Presentation 2 <a href="https://drive.google.com/file/d/1HBIoT62xTljOSyuVMbyehL6JIpjBLTQJ/view?usp=sharing">(slides)</a>: adaptive Johnson-Lindenstrauss. Presenter: Paul, Supporter: Alison. </p>
+	   <ul>
+		   <li><b>Present:</b> <a href="https://arxiv.org/abs/2504.09331">Adaptive Robustness of Hypergrid Johnson-Lindenstrauss</a>. Andrej Bogdanov, Alon Rosen, Neekon Vafa, Vinod Vaikuntanathan. </li>
+           </ul>
+	   </div>
+	</div>
+    </div>
+
+    <div class="lecture-entry">
+	    <div class="lecture-title">Spring break! (3/19)</div>
+    </div>
+
+
+    <div class="lecture-entry">
+	    <div class="lecture-title"> Lecture 9 (3/26):</div>
+	    <div class="lecture-content">
+		 <p>Model stealing</p>
+		 <div class="reading-list">
+	        <p>Presentation 1 (<a href="https://docs.google.com/presentation/d/1zHUc_9GOJz7T2YNJ9TSckx0VOuK6hgAwKQ_BI7fqYnk/edit?usp=sharing">slides</a>): attacks. Presenter: Ryan, Supporter: Anurag.</p>
+		<ul>
+			<li><b>Present:</b> <a href="https://arxiv.org/abs/2410.05750">Polynomial Time Cryptanalytic Extraction of Deep Neural Networks in the Hard-Label Setting</a>. Nicholas Carlini, Jorge Chávez-Saab, Anna Hambitzer, Francisco Rodríguez-Henríquez, Adi Shamir. </li>
+			<li>Optional: <a href="https://arxiv.org/abs/2003.04884">Cryptanalytic Extraction of Neural Network Models</a>. Nicholas Carlini, Matthew Jagielski, Ilya Mironov. </li>
+		</ul>
+		 <p>Presentation 2 (<a href="https://drive.google.com/file/d/1J30Emq83JahGw4MSMDWSd0NeloDiByxV/view?usp=sharing">slides</a>): defense. Presenter: Alison, Supporter: Christine.</p>
+                 <ul>
+                         <li><b>Present:</b> <a href="https://arxiv.org/abs/2201.09243">Increasing the Cost of Model Extraction with Calibrated Proof of Work</a>. Adam Dziedzic, Muhammad Ahmad Kaleem, Yu Shen Lu, Nicolas Papernot. </li>
+			 <li>Relevant: <a href="https://arxiv.org/abs/1802.08908">Scalable Private Learning with PATE</a>. Nicolas Papernot, Shuang Song, Ilya Mironov, Ananth Raghunathan, Kunal Talwar, Úlfar Erlingsson. </li>
+                </ul>
+	    </div>
+	    <p><b>Question to think about:</b> How should one define security of a successful defense?</p>
+      </div>
+
+    <div class="lecture-entry">
+        <div class="lecture-title">Lecture 10 (4/2):</div>
+        <div class="lecture-content">
+		<p>Unlearning</p>
+            <div class="reading-list">
+                <p>Presentation 1 (<a href="https://drive.google.com/file/d/1mVE7P9K8KDbrlYd7WR9MYudzSavcBztE/view?usp=sharing">slides</a>): practice. Presenter: Paul, Supporter: Leo.</p>
+                <ul>
+			<li><b>Present: </b><a href="https://arxiv.org/pdf/2406.09073">Are we making progress in unlearning? Findings from the first NeurIPS unlearning competition</a>. Triantafillou et al.</li>
+                </ul>
+		<p>Presentation 2 (<a href="https://drive.google.com/file/d/1lMkNCQt7nU7Qbgyv3Pchb033-HdtUjuD/view?usp=drive_link">slides</a>): theory. Presenter: Sebastian, Supporter: Christine.</p>
+		<ul>
+			<li><b>Present: </b><a href="https://arxiv.org/pdf/2504.16430">MAGIC: Near-Optimal Data Attribution for Deep Learning</a>. Andrew Ilyas, Logan Engstrom.</li>
+			<li>Relevant: <a href="https://arxiv.org/abs/2503.13751">Optimizing ML Training with Metagradient Descent</a>. Logan Engstrom, Andrew Ilyas, Benjamin Chen, Axel Feldmann, William Moses, Aleksander Madry.</li>
+		</ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="lecture-entry">
+        <div class="lecture-title">Lecture 11 (4/9):</div>
+        <div class="lecture-content">
+		<p>Misc</p>
+            <div class="reading-list">
+                <p>Presentation 1 (<a href="https://drive.google.com/file/d/1HXWcFtfWlG1oIdzIqxp5FqQO8eg6GBZS/view?usp=drive_link">slides</a>): deep neural cryptography. Presenter: Yoav, Supporter: Ryan.</p>
+                <ul>
+			<li><b>Present: </b><a href="https://drive.google.com/file/d/1xzt_Rwy6O6cTtoxzwnjCtalPa9qU7rGG/">Deep Neural Cryptography</a>. David Gerault, Anna Hambitzer, Eyal Ronen, Adi Shamir.</li>
+                </ul>
+		<p>Presentation 2 (<a href="https://drive.google.com/file/d/1jNdRNxicp-6YN0K5MZ1MjZvc5WagN_Oi/">slides</a>): image watermarks. Presenter: Christine, Supporter: Leo.</p>
+		<ul>
+			<li><b>Present: </b><a href="https://arxiv.org/abs/2410.07369">An Undetectable Watermark for Generative Image Models</a>. Sam Gunn, Xuandong Zhao, Dawn Song.</li>
+		</ul>
+		<p>Presentation 3 (<a href="https://drive.google.com/file/d/16dgsfVFLeAhY1VszoBmTPI7wUz-blgOx/">slides</a>, <a href="https://drive.google.com/file/d/1VrR4Id5PKUS3KTB4HUZau7RSIv2QrAtQ/">notes</a>): self-proving LLMs. Presenter: Asher, Supporter: Ye.</p>
+		<ul>
+			<li><b>Present: </b><a href="https://arxiv.org/abs/2405.15722">Models That Prove Their Own Correctness</a>. Noga Amit, Shafi Goldwasser, Orr Paradise, Guy Rothblum. </li>
+		</ul>
+            </div>
+        </div>
+    </div>    
+
+    <div class="lecture-entry">
+        <div class="lecture-title">Lecture 12 (4/16):</div>
+        <div class="lecture-content">
+	    <p>Misc</p>
+            <div class="reading-list">
+	      <p> <a href=" ">In Memoriam: Michael O. Rabin </a> - a short tribute by Tal Malkin  
+		<ul>
+		  <li> See also this <a href="https://cacm.acm.org/news/in-memoriam-michael-o-rabin/#8cd8cb8b-e3fd-45de-be8d-469b9b02e6fb"> Communication of the ACM tribute</a> by Spafford and Garfinkel.  
+		  </li>
+		</ul>
+		</p> 
+                <p>Presentation 1 (<a href="https://drive.google.com/file/d/1kOSrem3wNu4xtQCNNAjicl_O1c8edDTr/">slides</a>): neural cryptanalysis. Presenter: Leo, Supporter: Hideaki.</p>
+                <ul>
+			<li>Optional: <a href="https://eprint.iacr.org/2019/037">Improving Attacks on Round-Reduced Speck32/64 using Deep Learning</a>. Aron Gohr.</li>
+			<li>Optional: <a href="https://eprint.iacr.org/2021/287">A Deeper Look at Machine Learning-Based Cryptanalysis</a>. Adrien Benamira, David Gerault, Thomas Peyrin, and Quan Quan Tan.</li>
+<li> Relevant: <a href="https://eprint.iacr.org/2025/852">Neural-Inspired Advances in Integral Cryptanalysis</a>. Liu Zhang, Yiran Yao, Danping Shi, Dongchen Chai, Jian Guo, Zilong Wang.</li>
+<li> Relevant: <a href="https://eprint.iacr.org/2026/340">Improving Neural-Inspired Integral Distinguishers via a Linear-Algebraic Approach</a>. Hwang, Kim, Kim, Lee, Shin, Hong, Lee, Sung, Seok. 
+                </ul>
+		<p>Presentation 2 (<a href="https://drive.google.com/file/d/1ksMB_nSZcxCzsE2USzGdEsbvH4ktHUI0/">slides</a>): data poisoning. Presenter: Tony, Supporter: Asher.</p>
+		<ul>
+			<li><b>Present: </b><a href="https://arxiv.org/abs/1804.00792">Poison Frogs! Targeted Clean-Label Poisoning Attacks on Neural Networks</a>. Ali Shafahi, W. Ronny Huang, Mahyar Najibi, Octavian Suciu, Christoph Studer, Tudor Dumitras, Tom Goldstein	.</li>
+		</ul>
+		<p>Presentation 3 (<a href="">slides</a>): debate. Presenter: Ye, Supporter: Ryan.</p>
+		<ul>
+			<li><b>Present: </b><a href="https://arxiv.org/abs/1805.00899">AI safety via debate</a>. Geoffrey Irving, Paul Christiano, Dario Amodei.</li>
+			<li>Relevant: <a href="https://arxiv.org/abs/2311.14125">Scalable AI Safety via Doubly-Efficient Debate</a>. Jonah Brown-Cohen, Geoffrey Irving, Georgios Piliouras.</li>
+		</ul>
+            </div>
+        </div>
+    </div>
+
+        <div class="lecture-entry">
+        <div class="lecture-title">Lecture 13 (4/23):</div>
+        <div class="lecture-content">
+	    <p>Practical privacy and wrap-up</p>
+            <div class="reading-list">
+		    <p>Presentation 1 (guest lecture!): <a href="https://sachaservanschreiber.com/">Sacha Servan-Schreiber</a> on AI privacy and <a href="https://tinfoil.sh/">Tinfoil</a>.</p>
+                <ul>
+			<li><a href="https://docs.tinfoil.sh/verification/secure-enclave-primer">Primer on secure hardware enclaves and remote attestation</a>. </li>
+                    <li><a href="https://www.workshoplabs.ai/blog/private-post-training">[Technical blog]: Private Post-Training and Inference for Frontier Models.</a></li>
+		    <li><a href="https://tinfoil.sh/blog/2026-02-03-proving-model-identity">[Technical blog]: How Tinfoil Proves Exactly What Model Is Running.</a></li>
+                </ul>
+		<p>Presentation 2: class discussion and summary led by Miranda and Tal</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="lecture-entry">
+        <div class="lecture-title">Lecture 14 (4/30):</div>
+        <div class="lecture-content">
+	    <p><b>Final presentations. Different location: CSB 488</b>
+            <div class="reading-list">
+                <ul>
+			<li><b>1:10-1:30 Tony:</b> Anonymous credentials</li>
+			<li><b>1:30-1:55 Christine+Anurag:</b> Pseudorandom codes and watermarking</li>
+			<li><b> break </b></li>
+			<li><b>2:10-2:30 Yoav:</b> On (Im)possibility of Chain-of-Thought Monitoring</li>
+			<li><b>2:30-2:50 Alison:</b> Formalizing and Quantifying Post-Hoc Redactability in Autoregressive Models</li>
+			<li><b>2:50-3:10 Ryan:</b> Vulnerabilities in Elliptic Curve Cryptography</li>
+			<li><b> break </b> </li>
+			<li><b>3:25-3:45 Ye:</b> Private verifiable inference</li>
+			<li><b>3:45-4:05 Hideaki:</b> &pi;-FORMER: efficient zk-SNARKs for transformers via learnable lookup attention</li>
+			<li><b> break </b></li>
+			<li><b>4:15-4:35 Asher:</b> On (Im)possibility of non-interactive ZKP for private-coin randomized computation</li>
+			<li><b>4:35-4:55 Leo:</b> Information-Theoretic Unlearning in the Quantum Setting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <div class="lecture-entry">
+        <div class="lecture-title">Lecture 2 (MM/DD):</div>
+        <div class="lecture-content">
+            <p><strong>Student Name</strong>, with support from Student Name, presented on [topic].</p>
+            <div class="reading-list">
+                <p>Reading:</p>
+                <ul>
+                    <li><a href="#">Paper title</a>, Authors</li>
+                    <li><a href="#">Student's slides/notes</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    -->
+
+<!--	<li>Filtering (determining whether model outputs are harmful) </li>
+	<li>Watermarking AI-generated content </li>
+	<li>Verifiable learning (can we outsource training and ensure that the model given to us is safe to use?)</li> 
+	<li>Unlearning (after we've trained a model, can we make it "forget" points it was trained on?</li>
+	<li>Weight extraction (given query access to a model, can we reconstruct its weights?)</li>
+	<li>Cryptographic hardness of ML tasks (can neural networks be collision-resistant functions?)</li> -->
+	<li>[Your suggestion here!]</li>
+     <!--   <li><a href="#">Paper title</a>, Authors - Brief description</li>
+	<li><a href="#">Paper title</a>, Authors - Brief description</li>-->
+
+    <h2 id="resources">Additional Resources</h2>
+    <p>Below are additional resources you may find helpful.</p>
+    <ul>
+	    <li><a href="https://introml.mit.edu/_static/spring24/LectureNotes/6_390_lecture_notes_spring24.pdf">MIT machine learning lecture notes</a></li>
+            <li><a href="https://mlcrypto.github.io/course/">Course webpage</a> for a similar course being taught at MIT this semester, by Shafi Goldwasser and Vinod Vaikuntanathan.</li>
+	    <li><a href="https://www.youtube.com/live/j5i7_OP5V1c?si=c6LD3ZbXaleQDQop">Applications of Crypto to ML</a>: a talk given by Nicholas Carlini at the Simons Institute.</li>
+    </ul>
+
+    <h2 id="requirements">Class Requirements</h2>
+    Students will be expected to read papers for each class, participate in discussion, and present one or two papers.
+    There will also be short quizzes for each topic. 
+    Every student should complete a research project on any topic of their choice related to cryptography, subject to instructor approval. Students may work on their research project individually or in a group.  
+
+    <p>The class requirements and their relative weight in the grade are as follows:</p>
+
+    <ul>
+      <li><strong>Lecture Presentation and Support (40%):</strong>
+	Weekly meetings will typically be divided into two lectures of
+	about 50 minutes each (including discussion), and most
+	lectures will be delivered by students.
+	For each lecture there will typically be one student in charge
+	of presenting the paper(s) and leading the discussion, and one
+	student supporting the presenter.
+	Every student is expected to take the role of a presenter
+	twice and the role of a supporter twice throughout the
+	semester. See <a href="#presentations">additional details on
+	lecture presentations</a> below.</li> 
+        
+        <li><strong>Quizzes (10%):</strong> Every week, there will be
+	  a short,  quiz
+	  on <a href="https://www.gradescope.com/courses/1237585">gradescope</a>. 
+	  This is meant to check that students have been paying
+	  attention and reflect on the take-home messages of the
+	  lecture, not very time consuming. 
+	  The quiz should be taken individually by every student, without collaboration.</li>
+        
+        <li><strong>Attendance, Participation, Homework (10%):</strong> Students are expected to be present in lectures (physically, but not only), and are encouraged to participate. There may also be a small number (between 0 and 2, likely closer to 0) of homeworks.</li>
+        
+        <li><strong>Project (40%):</strong> Every student should
+        complete a research project on any cryptographic of their
+          choice, subject to instructor approval.
+	  See <a href="#projects"> additional details on project
+        requirements</a> below. 
+    </ul>
+
+    <p>Overall, we plan to grade (very) generously, but what you get from the class in terms of the class goals—learning of and exposure to the topics covered, research, and teaching—is proportional to how much you put into it (and for the learning part, also proportional to how much your fellow students and teaching staff put into the teaching part). We hope for an intimate, fun class, where everyone puts forth their best effort.</p>
+
+    <h2 id="presentations">Lecture Presentation Details</h2>
+
+    <p>The team of presenter(s) and supporter(s) will work together to thoroughly understand the assigned paper(s), and plan how to teach it effectively. Motivation and context, as well as definitions, proofs, techniques, and open problems, are all important—the team, with guidance and feedback from the teaching staff, should plan the right balance in teaching their particular topic to the class.</p>
+
+    <ul>
+        <li><strong>Presenter(s):</strong> have to read the paper
+        carefully, think about the right way to teach it to the
+        audience, how to structure their presentation, what to include
+        and not include in the given time (some papers may be quite
+        long), what the main message is, and determine the mechanism
+        they prefer (slides or blackboard). They should also lead the
+        discussion and answer student questions during the lecture.</li>
+        
+        <li><strong>Supporters(s):</strong> have to read the paper
+        carefully, and meet with presenters prior to their lecture to
+          go over the presentation and give feedback and suggestions. 
+	<!--
+	 (generally, the presenters should share their preliminary
+        slides or lecture notes with the supporters for feedback at
+        least a day before the class they are teaching).--> 
+	Supporters should be generally available over email to answer
+        presenters' questions prior to the lecture, and prepared to
+        help answer students' questions during the lecture and
+        participate in discussion.</li>
+        
+        <li><strong>Support from instructors:</strong> the team will
+        receive an email with detailed instructions and
+        recommendations from an instructor a week before their
+        presentation. The team will then need to meet with the other
+        instructor a day or two prior to their presentation for
+        practice and feedback.</li> 
+        
+        <li><strong>Materials:</strong> the team should also provide materials for rest of the class, in the form of notes or slides summarizing the lecture (again with feedback from the teaching staff).</li>
+    </ul>
+
+    <h2 id="projects">Project Details</h2>
+	  Students may work on
+        their research project individually or in pairs. If you would
+        like to have a bigger group, or to collaborate with others
+        outside the class (e.g., other professors or fellow students),
+        you may do so subject to instructor approval, provided that  
+        all your collaborators know and approve (and are mentioned in
+        your report), and that you're not
+        getting double credit for the same work (and of course, we
+    will hold you accountable for your project).
+
+
+    <p> <b> Choosing a Project Topic:  </b>
+      The project can be on any topic related to crytpgraphy (with instructor approval); it can, but does not have to, fall within the overall theme of the class this semester.
+      
+      The first stage of the project will consist of literature study of the
+      selected area, and tentative identification of the problem you would
+      like to address (what you'd hope to achieve). Over the semester you will
+      refine this goal, state a concrete research result
+  you hope to obtain, and work towards it.
+      Identifying a problem to pursue, making it well-defined, and coming up
+      with a plan towards addressing it,  is your responsibility. However,
+      you are allowed
+      and  encouraged to discuss your ideas with (and receive feedback from) the
+      instructors, TA, and fellow students, at all stages (you may also
+      incorporate others' ideas  in your project, as long as they are ok
+      with it, you give them proper credit, and the project also reflects
+  appropriate  effort by each member of the group).
+
+<p> To help you with topic selection, we have compiled the following resources, based on student requests and on our ideas (these will be updated as needed):
+  <ul>
+    <li> <a href="https://drive.google.com/file/d/11YfjRKEHdJ0ja0aFVsoOEeBdyMCMaJOS/view?usp=sharing">Advanced Crypto Project Suggestions and Resources</a>- this has many resources and references, as well as concrete suggestions for potential questions you may want to explore (ranging from specific technical questions we think are promising, to more vague interesting directions).  </li> 
+    <li> <a href="https://drive.google.com/file/d/1FIfLaBu90iIxXL8H1_gdbKApo9HfUU4D/view?usp=drive_link">Miranda's Curated Crypto+AI Library</a> - this is narrower than the above, as it focuses on only a subset of the topics, and lists relevant papers (not specific open problems). However, it is curated -- the papers listed are ones Miranda read, and thinks it's worth reading if you are interested in the topic.  
+    </li>
+  </ul>
+
+       <p>      
+      Note that the research problem you choose to work on does not have to
+      be one of our suggestions, nor does it need to be an open problem that is stated in some paper or identified by an       expert in the field -- it can be a problem of your own invention.
+      It can also be an extension of a known result to new, unknown
+      settings. The final report does not need to be a publishable result,
+      nor must it conclude in successful resolution. One of the main goals
+      of this course is to invoke interesting research ideas, and give you a
+      taste of the research process. We encourage interesting projects that
+      might end up unsuccessful (as long as all attempts are well documented
+      and make sense overall), over a successful resolution of a trivial
+      problem.
+      
+<p>       While we expect that most projects will not end with a
+      publishable result, given the nature of research and the time
+  alotted, some might (and have before).
+        We suggest that you approach this optimistically: propose a 
+      concrete research problem, and attack it with the goal of
+      solving it.
+      In your final report, describe either your new result, or your attempt, 
+      where you reached, and what would be the next steps you would
+  try if given more time.
+
+<p> Specific milestones required and due dates are detailed below. You are encouraged to consult us early, and submit
+  the proposal/progress  reports early, and we will do our best to
+  provide early feedback.
+  
+
+<p><b>Proposal -- due Fri, February 27: </b>   
+  The proposal (which can be quite short), should
+  include the following components:
+  <ol>
+    <li> Participating group members </li>
+    <li> General area you'd like to investigate. Optionally,
+      includ the reason that you selected this area. </li>
+    <li> Identify an open problem you'd like to solve, or
+      a research result you'd like to achieve. Imagine the best
+      case scenario of you succeeding in your project: what will the
+      abstract of the paper say?  Include the statement of a
+      (conjectured) result you hope to achieve, some motivation for why
+      you think this is interesting, and how this compares to what
+      is known.
+      At this stage the open problem can be open ended
+      (e.g., you could include more than one potential open
+      problem, or a range of possible results parameters, or a
+      "meta" open problem indicating your plan for coming up with
+      an open problem of a certain type).
+    </li>
+    <li> An initial list of papers you plan to read, or other
+      materials you plan to study. </li>
+    <li> Indicate what you plan to complete by the time  you
+      submit your progress  report.
+      Keep in mind that as you explore and study an area (and also
+      as you receive feedback  from us), your plans may shift (you
+      will have a chance to update your plan
+      in the progress report).      </li>
+  </ol>
+
+<p><b>Progress Report -- due <s>Fri, March 27</s>  Mon April 6th:</b>
+  The progress report will include the initial project proposal,
+  and additionally include updates and refinement on
+  points 3 and 5 above.  Specifically, discuss what you've
+  learned so far, and what changes you'd like to make to your proposed
+  research problem.
+
+  At this stage, the open problem you state as your goal should
+  be more concrete (for example, a formal statement of a theorem
+  you would like to prove or disprove, or what experimental goals you would like to achieve).
+  If based on your study so far you think your initial plan is
+  not feasible or not interesting, explain why and set a new
+  goal which you believe is interesting and achievable within
+  the time frame.
+  In any case you should outline your planned approach towards
+  satisfying your goal based on the progress you've made so far.
+
+  Additionally, describe what you are planning to cover in your
+  project presentation.
+
+<p> <b> Final report -- due Mon May 11: </b>
+  Your final report will consist of a paper describing what you have
+  achieved.  If you obtained a new research result, state it
+  clearly (this would take the form of a formal theorem,   a new formal model / definition, a
+  description of experimental findings, etc), and include background
+  information and motivation.
+  If you haven't solved a new open problem (which happens more
+  often than not, given the short duration of the project), your
+  final report will including a literature survey,
+  open  problems, a description of why and where you got stuck,
+  and what you learned from these obstacles,
+  including a suggestion for the next research steps, and what
+  might be obtainable.
+</p>
+
+
+     <p> Overall, there are two main goals for a project in
+      this class, and your final report should demonstrate you have
+      progressed on both (although the ratio between the two can vary).
+  <ol>
+    <li> Acquiring a substantial body of knowledge about the
+      topic of your project. This will involve closely and
+      carefully reading literature on your specific topic (likely to be
+      several papers). You should demonstrate this aspect of your project in
+       the  "background" section(s) of your final report, which
+      should be a clear synthesis and exposition in your own words of what
+      you have learned.</li>
+    <li> Gaining research experience in this area; i.e. make a
+      serious effort to contribute to the state of knowledge on your
+      project topic by  (i) identifying an interesting open question
+      or  direction for future research related to your project topic;
+      (ii) coming up with a plausible approach to make progress; and
+      (iii) working towards delivering on your approach.
+      You should demonstrate this aspect of your project by explaining
+      in detail your efforts towards (i), 
+      (ii) and (iii) in the rest of your final report.</li>
+  </ol>
+
+  The ratio of (1) to (2) may vary significantly between different projects.
+  There are some projects that might involve relatively less
+  background; in that case you will be expected to spend more time, and
+  give more evidence of time well spent on the progress made and your
+  successful/unsuccessful attempts.
+  For other projects, you will  need to acquire more extensive
+  background.
+
+    <p> There is no minimum (or maximum) number of papers you have to
+      read or pages that you have to write,  though we will try to 
+      guide students towards comparable (and reasonable) amount of
+      work to complete your project. The 
+      expectation from a group will be calibrated to the group size,
+      but the rule of thumb is: make an honest effort, start early,
+      do not hesitate to request feedback.
+
+<p><b> Final presentation: </b>
+  Each project will be presented to the rest of the class (during
+  the last lecture, or during a designated time in the reading or
+  finals week, in lieu of a final for the class). The amount of
+  time will be around 20 minutes (exact timing will be decided depending on the number of s
+  students / projects we have in the class,
+  and the size of the group). Every student should participate in the prsentation. 
+  
+
+
+    
+    <h2>Academic Honesty</h2>
+
+    <p>We expect that the primary goal of everyone in the class is to learn (we can imagine no other reason that you would be in this class). Hopefully this means that there will be no focus on grades (which we can tolerate but discourage in this class), and no issues of dishonesty (which we absolutely will not tolerate). In particular, students should take the quizzes on their own, and be sure to provide appropriate citations for all sources used in their project reports, as well as acknowledgements to other people who contributed (just as you should do in any academic publishing).</p>
+
+    <p>As in every CS class, students are expected to adhere to the <a href="http://www.cs.columbia.edu/education/honesty">academic honesty policy</a> of the CS department. This policy has been passed by the faculty of the Department and approved by the school deans.</p>
+
+    <h2>AI Policy</h2>
+    <p>We require that all original text (e.g., on your slides and in your final project) is written by you. Cosmetic use of AI, for proofreading/grammar is acceptable. We say "original text" because your slides and project may include definitions or theorems from relevant papers, with proper attribution. Otherwise, we allow any use of AI: to help with coding, understanding papers, etc. However, we believe that struggling with difficult material is very important in building research skills. We encourage you to use your best judgment (about what will best help your learning) when using AI. </p>
+
+</body>
+</html>

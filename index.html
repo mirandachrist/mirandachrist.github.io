@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="JQaOICfiVXXxPwo6v1WeunU0D4JVx5HriodgRWg9Nds" />
+    <title>Miranda Christ</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+        
+        h1 {
+            font-size: 2.2em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+        
+        .header-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+	.profile-image {
+    	    width: 180px;
+    	    height: 240px;
+    	    border-radius: 12px;
+    	    flex-shrink: 0;
+    	    object-fit: cover;
+	}
+        .photo-credit {
+            color: #9ca3af;
+            font-size: 0.75em;
+            text-align: center;
+        }
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .header-text {
+            flex: 1;
+        }
+        
+        h2 {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        a:hover {
+            color: #1d4ed8;
+        }
+        
+        .publications-list {
+            counter-reset: paper-counter;
+        }
+        
+        .manuscripts-list {
+            counter-reset: paper-counter;
+        }
+        
+        .workshops-list {
+            counter-reset: paper-counter;
+        }
+        
+        .blogs-list {
+            counter-reset: paper-counter;
+        }
+        
+        .paper {
+            margin-bottom: 20px;
+            padding-left: 45px;
+            position: relative;
+            counter-increment: paper-counter;
+        }
+        
+        .paper::before {
+            content: counter(paper-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: #f3f4f6;
+            color: #6b7280;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85em;
+            transition: all 0.2s;
+        }
+        
+        .paper:hover::before {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .paper-title {
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        
+        .paper-authors {
+            color: #6b7280;
+            font-size: 0.95em;
+            margin-bottom: 4px;
+        }
+        
+        .paper-venue {
+            color: #6b7280;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+        
+        .paper-links {
+            margin-top: 6px;
+            font-size: 0.9em;
+        }
+        
+        .paper-links a {
+            margin-right: 12px;
+        }
+        
+        .experience-item {
+            margin-bottom: 18px;
+            padding-left: 20px;
+            border-left: 3px solid #f3f4f6;
+        }
+        
+        .experience-title {
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+        
+        .experience-org {
+            color: #6b7280;
+            font-size: 0.95em;
+        }
+        
+        .intro-section {
+            margin-bottom: 40px;
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 0.95em;
+        }
+	.photo-credit {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.tooltip {
+  position: relative;
+  cursor: help;
+  border-bottom: none;
+  color: inherit;
+}
+
+.tooltip:hover,
+.tooltip:focus {
+  color: #475569; /* slightly darker slate */
+}
+
+.tooltip .tooltiptext {
+  position: absolute;
+  left: 50%;
+  bottom: 125%;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 120ms ease;
+
+  padding: 0.35rem 0.55rem;
+  border-radius: 10px;
+  background: #111827;
+  color: #ffffff;
+
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.tooltip:hover,
+.tooltip:focus {
+  color: #475569; /* slightly darker slate */
+}
+.tooltip:hover .tooltiptext,
+.tooltip:focus .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .header-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 200px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header-section">
+	<div class="profile-container">
+	   <img src="portrait-1.JPG" alt="Miranda Christ" class="profile-image">
+	   <p class="photo-credit">
+		  <span class="tooltip" tabindex="0">
+	    Photo credit
+	    <span class="tooltiptext">Photo by my multitalented friend Anna Lu</span>
+	  </span>
+	</p>
+	</div>
+        <div class="header-text">
+              <h1>Miranda Christ</h1>
+	</div>
+    </div>
+
+    <div class="intro-section">I am a postdoc at MIT hosted by <a href="https://www.csail.mit.edu/person/shafi-goldwasser">Shafi Goldwasser</a> and <a href="https://people.csail.mit.edu/vinodv/">Vinod Vaikuntanathan</a>. I recently completed my PhD in Computer Science at Columbia University, where I was a member of the <a href="https://theory.cs.columbia.edu/">Theory Group</a> and the <a href="https://www.cs.columbia.edu/crypto/">Crypto Lab</a>. There, I was co-advised by <a href="https://www.cs.columbia.edu/~tal/">Tal Malkin</a> and <a href="http://www.cs.columbia.edu/~mihalis/">Mihalis Yannakakis</a>.</p>
+        
+	 <p>I am interested in practically motivated theoretical problems in cryptography. Recently I've been especially interested in the intersection of cryptography and machine learning, and have worked on watermarks for AI-generated content. You can read about some of my work in the Simons Institute's <a href="https://simons.berkeley.edu/media/28058/download?inline#page=7.08">Polynomial Times magazine</a>.</p> 
+	<p>I have interned at Google, a16z crypto, and Mysten Labs.</p>
+
+	<p>In Spring 2026, I was awarded a <a href="https://www.cs.columbia.edu/2026/phd-students-recognized-with-top-fellowships/">Teaching Fellowship</a> to co-teach <a href="https://www.cs.columbia.edu/~mchrist/teaching/6261/">Advanced Cryptography (COMS E6261)</a> with Tal Malkin</a>. This is a graduate-level seminar focused on the intersection of crypto and AI.</p> 
+        
+        <p>In addition to below, you can find my papers on my <a href="https://dblp.org/pid/318/4946.html">dblp</a> and <a href="https://scholar.google.com/citations?user=X2RN-20AAAAJ">Google Scholar</a> pages.</p>
+
+	<p><strong>Email:</strong> mchrist at cs dot columbia dot edu</p>
+    </div>
+    
+    <h2>Publications</h2>
+        <p>Authors are listed in alphabetical order unless it's otherwise noted.</p>
+    
+    <div class="publications-list">
+    <div class="paper">
+	<div class="paper-title">Improved Pseudorandom Codes from Permuted Puzzles</div>
+        <div class="paper-authors">Miranda Christ, Noah Golowich, <a href="https://samuel-gunn.github.io/">Sam Gunn</a>, Ankur Moitra, Daniel Wichs</div>
+	<div class="paper-venue">STOC 2026</div>
+	<div class="paper-links">
+	    <a href="https://arxiv.org/abs/2512.08918v1">arxiv</a>
+	    <a href="https://eprint.iacr.org/2025/2222">ePrint</a>
+	</div>
+    </div>
+
+    <div class="paper">
+	<div class="paper-title">Fair Multiparty Coin Tossing from
+		Minimal Assumptions</div>
+	<div class="paper-authors">Marshall Ball, Miranda Christ, Yevgeniy Dodis, Rachit Garg</div>
+	<div class="paper-venue">EUROCRYPT 2026</div>
+	<div class="paper-links">
+		<a href="https://eprint.iacr.org/2026/931">ePrint</a>
+	</div>
+    </div>
+
+    <div class="paper">
+        <div class="paper-title">Protocols for Verifying Smooth Strategies in Bandits and Games</div>
+        <div class="paper-authors">Miranda Christ, Daniel Reichman, Jonathan Shafer</div>
+        <div class="paper-venue">NeurIPS 2025</div>
+        <div class="paper-links">
+            <a href="https://www.arxiv.org/abs/2507.10567">arxiv</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">How Much Public Randomness Do Modern Consensus Protocols Need?</div>
+        <div class="paper-authors">Joseph Bonneau, Benedikt Bünz, Miranda Christ, Yuval Efron</div>
+        <div class="paper-venue">AFT 2025</div>
+        <div class="paper-links">
+            <a href="https://eprint.iacr.org/2024/1794.pdf">ePrint</a>
+	    <a href="https://youtu.be/vIK9EgIXGAw?si=vpOcxoo25EvHpYrS">Yuval's AFT talk</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Merkle Mountain Ranges Are Optimal: On Witness Update Frequency for Cryptographic Accumulators</div>
+        <div class="paper-authors">Joseph Bonneau, Jessica Chen, Miranda Christ, Ioanna Karantaidou</div>
+        <div class="paper-venue">CRYPTO 2025</div>
+        <div class="paper-links">
+            <a href="https://eprint.iacr.org/2025/234">ePrint</a>
+	    <a href="https://youtu.be/OzTfkQdF43A?si=4sbPyF6fKb2I4I66&t=1385">CRYPTO talk</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Ideal Pseudorandom Codes</div>
+        <div class="paper-authors">Omar Alrabiah, Prabhanjan Ananth, Miranda Christ, Yevgeniy Dodis, Sam Gunn</div>
+        <div class="paper-venue">STOC 2025; invited to the SICOMP Special Issue</div>
+        <div class="paper-links">
+            <a href="https://arxiv.org/pdf/2411.05947">arxiv</a>
+            <a href="STOC-ideal-PRCs.pptx">pptx Slides</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">SoK: Watermarking for AI-Generated Content</div>
+        <div class="paper-authors">Xuandong Zhao, Sam Gunn, Miranda Christ, Jaiden Fairoze, Andrés Fabrega, Nicholas Carlini, Sanjam Garg, Sanghyun Hong, Milad Nasr, Florian Tramer, Somesh Jha, Lei Li, Yu-Xiang Wang, Dawn Song (non-alphabetical)</div>
+        <div class="paper-venue">IEEE S&P 2025</div>
+        <div class="paper-links">
+            <a href="https://arxiv.org/abs/2411.18479">arxiv</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Good Things Come to Those Who Wait: Dishonest-Majority Coin-Flipping Requires Delay Functions</div>
+        <div class="paper-authors">Joseph Bonneau, Benedikt Bünz, Miranda Christ, Yuval Efron</div>
+        <div class="paper-venue">EUROCRYPT 2025, SBC 2025</div>
+        <div class="paper-links">
+            <a href="https://eprint.iacr.org/2024/1711.pdf">ePrint</a>
+	    <a href="https://www.youtube.com/live/P_X1lORD6gQ?t=10222">SBC talk</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Pseudorandom Error-Correcting Codes</div>
+        <div class="paper-authors">Miranda Christ, Sam Gunn</div>
+        <div class="paper-venue">CRYPTO 2024</div>
+        <div class="paper-links">
+            <a href="https://eprint.iacr.org/2024/235">ePrint</a>
+            <a href="https://arxiv.org/abs/2402.09370">arxiv</a>
+	    <a href="https://www.youtube.com/live/UMSIc5USW5Y?si=GIPUiCkLCHUJr-SB">Simons talk</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Cornucopia: Distributed Randomness Beacons at Scale</div>
+        <div class="paper-authors">Miranda Christ, Kevin Choi, Joseph Bonneau (non-alphabetical)</div>
+        <div class="paper-venue">AFT 2024</div>
+        <div class="paper-links">
+            <a href="https://eprint.iacr.org/2023/1554">ePrint</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Accountable Secret Leader Election</div>
+        <div class="paper-authors">Miranda Christ, Kevin Choi, Walter McKelvie, Joseph Bonneau, Tal Malkin (non-alphabetical)</div>
+        <div class="paper-venue">AFT 2024</div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">SoK: Zero-Knowledge Range Proofs</div>
+        <div class="paper-authors">Miranda Christ, Foteini Baldimtsi, Konstantinos Chalkias, Deepak Maram, Arnab Roy, Joy Wang (non-alphabetical)</div>
+        <div class="paper-venue">AFT 2024</div>
+        <div class="paper-links">
+            <a href="https://eprint.iacr.org/2024/430">ePrint</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Undetectable Watermarks for Language Models</div>
+        <div class="paper-authors">Miranda Christ, Sam Gunn, Or Zamir</div>
+        <div class="paper-venue">RWC 2024, COLT 2024</div>
+        <div class="paper-links">
+            <a href="https://eprint.iacr.org/2023/763">ePrint</a>
+            <a href="https://arxiv.org/abs/2306.09194">arxiv</a>
+            <a href="https://youtu.be/1FuNLDVJJ_c?feature=shared">RWC talk</a>
+            <a href="Watermarks-with-comp.pdf">Slides</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Limits on Revocable Proof Systems, with Applications to Stateless Blockchains</div>
+        <div class="paper-authors">Miranda Christ, Joseph Bonneau (non-alphabetical)</div>
+        <div class="paper-venue">Financial Cryptography 2023</div>
+        <div class="paper-links">
+            <a href="https://ia.cr/2022/1478">ePrint</a>
+            <a href="https://youtu.be/UGcfTkZbjAw?si=m_2h75MPsakdMiFy">a16z crypto talk</a>
+            <a href="https://a16zcrypto.com/posts/article/on-the-impossibility-of-stateless-blockchains/">a16z crypto blog post</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">The Smoothed Complexity of Policy Iteration for Markov Decision Processes</div>
+        <div class="paper-authors">Miranda Christ, Mihalis Yannakakis</div>
+        <div class="paper-venue">STOC 2023</div>
+        <div class="paper-links">
+            <a href="https://arxiv.org/abs/2212.00083">arxiv</a>
+            <a href="https://youtu.be/y37BRQQ50Jg">STOC talk</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Differential Privacy and Swapping: Examining De-Identification's Impact on Minority Representation and Privacy Preservation in the U.S. Census</div>
+        <div class="paper-authors">Miranda Christ*, Sarah Radway*, Steven M. Bellovin (* denotes equal contribution; non-alphabetical)</div>
+        <div class="paper-venue">IEEE S&P 2022</div>
+        <div class="paper-links">
+            <a href="dp_swap_census.pdf">pdf</a>
+            <a href="https://www.computer.org/csdl/proceedings-article/sp/2022/131600b564/1CIO8gLsq2c">IEEE</a>
+            <a href="https://www.engineering.columbia.edu/news/2020-us-census">Columbia Engineering article</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Poly Onions: Achieving Anonymity in the Presence of Churn</div>
+        <div class="paper-authors">Megumi Ando, Miranda Christ, Anna Lysyanskaya, Tal Malkin</div>
+        <div class="paper-venue">TCC 2022</div>
+        <div class="paper-links">
+            <a href="https://eprint.iacr.org/2022/392">ePrint</a>
+            <a href="https://youtu.be/-E8MHlpID8o?t=1925">TCC talk</a>
+        </div>
+            </div>
+    </div>
+
+    <h2>Manuscripts</h2>
+    
+    <div class="manuscripts-list">
+    <div class="paper">
+        <div class="paper-title">Full Anonymity in the Asynchronous Setting from Peony Onion Encryption</div>
+        <div class="paper-authors">Megumi Ando, Miranda Christ, Kashvi Gupta, Tal Malkin, Dane Smith</div>
+        <div class="paper-links">
+            <a href="https://eprint.iacr.org/2025/1067">ePrint</a>
+        </div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Provably Robust Watermarks for Open-Source Language Models</div>
+        <div class="paper-authors">Miranda Christ, Sam Gunn, Tal Malkin, Mariana Raykova</div>
+        <div class="paper-links">
+            <a href="https://eprint.iacr.org/2024/1739">ePrint</a>
+            <a href="https://arxiv.org/pdf/2410.18861">arxiv</a>
+        </div>
+    </div>
+    </div>
+    
+    <h2>Experience</h2>
+    
+    <div class="experience-item">
+        <div class="experience-title">Visiting Student</div>
+        <div class="experience-org"><a href="https://simons.berkeley.edu/programs/cryptography-10-years-later-obfuscation-proof-systems-secure-computation">Simons Institute, Cryptography: 10 Years Later</a> | Summer 2025</div>
+    </div>
+    
+    <div class="experience-item">
+        <div class="experience-title">Student Researcher</div>
+        <div class="experience-org"><a href="https://www.google.com/">Google</a>, supervised by Mariana Raykova and Jonathan Katz | Spring and Summer 2024, Spring - Fall 2025 </div>
+    </div>
+    
+    <div class="experience-item">
+        <div class="experience-title">Research Intern</div>
+        <div class="experience-org"><a href="https://www.google.com/">Google</a>, supervised by Mariana Raykova and Jonathan Katz | Fall 2024</div>
+    </div>
+    
+    <div class="experience-item">
+        <div class="experience-title">Visiting Student</div>
+        <div class="experience-org"><a href="https://rosenalon.github.io/cifra/#">CIFRA Institute, Bocconi University</a>, hosted by Alon Rosen | September 2024</div>
+    </div>
+    
+    <div class="experience-item">
+        <div class="experience-title">Intern, Cryptography Group</div>
+        <div class="experience-org"><a href="https://mystenlabs.com/research-development">Mysten Labs</a> | Summer 2023</div>
+    </div>
+    
+    <div class="experience-item">
+        <div class="experience-title">Visiting Student</div>
+        <div class="experience-org"><a href="https://simons.berkeley.edu/programs/Meta-Complexity2023">Simons Institute, Meta-Complexity Program</a> | Spring 2023</div>
+    </div>
+    
+    <div class="experience-item">
+        <div class="experience-title">Intern</div>
+        <div class="experience-org"><a href="https://a16zcrypto.com/research/">a16z crypto research</a> | Summer and Fall 2022</div>
+    </div>
+    
+    <h2>Workshop Papers and Posters</h2>
+    
+    <div class="workshops-list">
+    <div class="paper">
+        <div class="paper-title">The Impact of De-Identification on Single-Year-of-Age Counts in the U.S. Census</div>
+        <div class="paper-authors">Sarah Radway, Miranda Christ (non-alphabetical)</div>
+        <div class="paper-venue">TPDP 2023</div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Differential Privacy and Swapping: Examining De-Identification's Impact on Minority Representation and Privacy Preservation in the U.S. Census</div>
+        <div class="paper-authors">Miranda Christ*, Sarah Radway*, Steven M. Bellovin (* denotes equal contribution; non-alphabetical)</div>
+        <div class="paper-venue">TPDP 2022</div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title">Counting Kindergarteners: De-identification's Impact on Student Representation</div>
+        <div class="paper-authors">Miranda Christ, Sarah Radway</div>
+        <div class="paper-venue">2020 Census Data Products: Workshop on the Demographic and Housing Characteristics Files 2022 (hosted by the National Academies and Committee on National Statistics)</div>
+    </div>
+    </div>
+    
+    <h2>Blog Posts</h2>
+    
+    <div class="blogs-list">
+    <div class="paper">
+        <div class="paper-title"><a href="https://a16zcrypto.com/posts/article/on-the-impossibility-of-stateless-blockchains/">On the impossibility of stateless blockchains</a></div>
+        <div class="paper-authors">Miranda Christ, Joseph Bonneau</div>
+        <div class="paper-venue">a16z crypto blog 2023</div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title"><a href="https://mystenlabs.com/blog/zero-knowledge-range-proofs">Zero-Knowledge Range Proofs: Proving Where Your Secret Lies</a></div>
+        <div class="paper-authors">Miranda Christ, Foteini Baldimtsi, Konstantinos Chalkias, Deepak Maram, Arnab Roy, Joy Wang</div>
+        <div class="paper-venue">Mysten Labs blog 2023</div>
+    </div>
+    
+    <div class="paper">
+        <div class="paper-title"><a href="https://a16zcrypto.com/posts/article/leader-election-from-randomness-beacons-and-other-strategies/">Leader Election from Randomness Beacons and Other Strategies</a></div>
+        <div class="paper-authors">Miranda Christ, Valeria Nikolaenko, Joseph Bonneau</div>
+        <div class="paper-venue">a16z crypto blog 2022</div>
+    </div>
+    
+    </div>
+    
+    <footer>
+	<p>If I'm not doing research, I'm probably <a href="climbing.jpg">rock climbing</a> or <a href="colty-learning.jpeg">educating my dog</a>.</p>
+
+	<p>Here is my <a href="https://www.linkedin.com/in/mjchrist/">LinkedIn</a>.</p>
+    </footer>
+</body>
+</html>
